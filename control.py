@@ -20,13 +20,26 @@ def main():
 
     # Specific ID/MAC of the bulb to set
     # First LED STRIP
+    print("waiting for bulb info")
     bulb_info = scanner.getBulbInfoByID("2CF432CE8B6A")
 
     if bulb_info:
-
+        print("connected to bulb !")
         bulb = WifiLedBulb(bulb_info["ipaddr"])
-        bulb.update_state()
-        print(bulb)
+        preset = ''
+
+        while preset != 'exit':
+            # Ask the user for a name.
+            preset_n = input(
+                "Enter preset number, or enter 'exit': ")
+            if preset == 'exit':
+                break
+            preset = int(preset_n) + 99
+            if preset >= 100 and preset < 400:
+                bulb.setPresetPattern(preset, 90)
+            else:
+                print("invalid preset number")
+        print("exited program")
 
     else:
         print("Can't find bulb")
@@ -34,4 +47,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
