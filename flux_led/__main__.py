@@ -172,6 +172,325 @@ class utils:
             percent = 0
         return int((percent * 255) / 100)
 
+class PresetPatternStrip(IntEnum):
+    # cat patterns-sorted.txt | sed -s 's/\,//g' | sed -s 's/\s/_/g' | sed -E 's/^(.*)_:_(.*)_$/\2 = \1/g' | sed -s 's/^7/Seven/g' | sed -s 's/+/and/g' | sed -E 's/\s0+/ /g'
+    Circulate_all_modes = 1
+    Seven_colors_change_gradually = 2
+    Seven_colors_run_in_olivary = 3
+    Seven_colors_change_quickly = 4
+    Seven_colors_strobe_flash = 5
+    Seven_colors_running_1_point_from_start_to_end_and_return_back = 6
+    Seven_colors_running_multi_points_from_start_to_end_and_return_back = 7
+    Seven_colors_overlay_multi_points_from_start_to_end_and_return_back = 8
+    Seven_colors_overlay_multi_points_from_the_middle_to_the_both_ends_and_return_back = 9
+    Seven_colors_flow_gradually_from_start_to_end_and_return_back = 10
+    Fading_out_run_7_colors_from_start_to_end_and_return_back = 11
+    Runs_in_olivary_7_colors_from_start_to_end_and_return_back = 12
+    Fading_out_run_7_colors_start_with_white_color_from_start_to_end_and_return_back = 13
+    Run_circularly_7_colors_with_black_background_1point_from_start_to_end = 14
+    Run_circularly_7_colors_with_red_background_1point_from_start_to_end = 15
+    Run_circularly_7_colors_with_green_background_1point_from_start_to_end = 16
+    Run_circularly_7_colors_with_blue_background_1point_from_start_to_end = 17
+    Run_circularly_7_colors_with_yellow_background_1point_from_start_to_end = 18
+    Run_circularly_7_colors_with_purple_background_1point_from_start_to_end = 19
+    Run_circularly_7_colors_with_cyan_background_1point_from_start_to_end = 20
+    Run_circularly_7_colors_with_white_background_1point_from_start_to_end = 21
+    Run_circularly_7_colors_with_black_background_1point_from_end_to_start = 22
+    Run_circularly_7_colors_with_red_background_1point_from_end_to_start = 23
+    Run_circularly_7_colors_with_green_background_1point_from_end_to_start = 24
+    Run_circularly_7_colors_with_blue_background_1point_from_end_to_start = 25
+    Run_circularly_7_colors_with_yellow_background_1point_from_end_to_start = 26
+    Run_circularly_7_colors_with_purple_background_1point_from_end_to_start = 27
+    Run_circularly_7_colors_with_cyan_background_1point_from_end_to_start = 28
+    Run_circularly_7_colors_with_white_background_1point_from_end_to_start = 29
+    Run_circularly_7_colors_with_black_background_1point_from_start_to_end_and_return_back = 30
+    Run_circularly_7_colors_with_red_background_1point_from_start_to_end_and_return_back = 31
+    Run_circularly_7_colors_with_green_background_1point_from_start_to_end_and_return_back = 32
+    Run_circularly_7_colors_with_blue_background_1point_from_start_to_end_and_return_back = 33
+    Run_circularly_7_colors_with_yellow_background_1point_from_start_to_end_and_return_back = 34
+    Run_circularly_7_colors_with_purple_background_1point_from_start_to_end_and_return_back = 35
+    Run_circularly_7_colors_with_cyan_background_1point_from_start_to_end_and_return_back = 36
+    Run_circularly_7_colors_with_white_background_1point_from_start_to_end_and_return_back = 37
+    Run_circularly_7_colors_with_black_background_1point_from_middle_to_both_ends = 38
+    Run_circularly_7_colors_with_red_background_1point_from_middle_to_both_ends = 39
+    Run_circularly_7_colors_with_green_background_1point_from_middle_to_both_ends = 40
+    Run_circularly_7_colors_with_blue_background_1point_from_middle_to_both_ends = 41
+    Run_circularly_7_colors_with_yellow_background_1point_from_middle_to_both_ends = 42
+    Run_circularly_7_colors_with_purple_background_1point_from_middle_to_both_ends = 43
+    Run_circularly_7_colors_with_cyan_background_1point_from_middle_to_both_ends = 44
+    Run_circularly_7_colors_with_white_background_1point_from_middle_to_both_ends = 45
+    Run_circularly_7_colors_with_black_background_1point_from_both_ends_to_middle = 46
+    Run_circularly_7_colors_with_red_background_1point_from_both_ends_to_middle = 47
+    Run_circularly_7_colors_with_green_background_1point_from_both_ends_to_middle = 48
+    Run_circularly_7_colors_with_blue_background_1point_from_both_ends_to_middle = 49
+    Run_circularly_7_colors_with_yellow_background_1point_from_both_ends_to_middle = 50
+    Run_circularly_7_colors_with_purple_background_1point_from_both_ends_to_middle = 51
+    Run_circularly_7_colors_with_cyan_background_1point_from_both_ends_to_middle = 52
+    Run_circularly_7_colors_with_white_background_1point_from_both_ends_to_middle = 53
+    Run_circularly_7_colors_with_black_background_1point_from_middle_to_both_ends_and_return_back = 54
+    Run_circularly_7_colors_with_red_background_1point_from_middle_to_both_ends_and_return_back = 55
+    Run_circularly_7_colors_with_green_background_1point_from_middle_to_both_ends_and_return_back = 56
+    Run_circularly_7_colors_with_blue_background_1point_from_middle_to_both_ends_and_return_back = 57
+    Run_circularly_7_colors_with_yellow_background_1point_from_middle_to_both_ends_and_return_back = 58
+    Run_circularly_7_colors_with_purple_background_1point_from_middle_to_both_ends_and_return_back = 59
+    Run_circularly_7_colors_with_cyan_background_1point_from_middle_to_both_ends_and_return_back = 60
+    Run_circularly_7_colors_with_white_background_1point_from_middle_to_both_ends_and_return_back = 61
+    Overlay_circularly_7_colors_with_black_background_from_start_to_end = 62
+    Overlay_circularly_7_colors_with_red_background_from_start_to_end = 63
+    Overlay_circularly_7_colors_with_green_background_from_start_to_end = 64
+    Overlay_circularly_7_colors_with_blue_background_from_start_to_end = 65
+    Overlay_circularly_7_colors_with_yellow_background_from_start_to_end = 66
+    Overlay_circularly_7_colors_with_purple_background_from_start_to_end = 67
+    Overlay_circularly_7_colors_with_cyan_background_from_start_to_end = 68
+    Overlay_circularly_7_colors_with_white_background_from_start_to_end = 69
+    Overlay_circularly_7_colors_with_black_background_from_end_to_start = 70
+    Overlay_circularly_7_colors_with_red_background_from_end_to_start = 71
+    Overlay_circularly_7_colors_with_green_background_from_end_to_start = 72
+    Overlay_circularly_7_colors_with_blue_background_from_end_to_start = 73
+    Overlay_circularly_7_colors_with_yellow_background_from_end_to_start = 74
+    Overlay_circularly_7_colors_with_purple_background_from_end_to_start = 75
+    Overlay_circularly_7_colors_with_cyan_background_from_end_to_start = 76
+    Overlay_circularly_7_colors_with_white_background_from_end_to_start = 77
+    Overlay_circularly_7_colors_with_black_background_from_start_to_end_and_return_back = 78
+    Overlay_circularly_7_colors_with_red_background_from_start_to_end_and_return_back = 79
+    Overlay_circularly_7_colors_with_green_background_from_start_to_end_and_return_back = 80
+    Overlay_circularly_7_colors_with_blue_background_from_start_to_end_and_return_back = 81
+    Overlay_circularly_7_colors_with_yellow_background_from_start_to_end_and_return_back = 82
+    Overlay_circularly_7_colors_with_purple_background_from_start_to_end_and_return_back = 83
+    Overlay_circularly_7_colors_with_cyan_background_from_start_to_end_and_return_back = 84
+    Overlay_circularly_7_colors_with_white_background_from_start_to_end_and_return_back = 85
+    Overlay_circularly_7_colors_with_black_background_from_middle_to_both_ends = 86
+    Overlay_circularly_7_colors_with_red_background_from_middle_to_both_ends = 87
+    Overlay_circularly_7_colors_with_green_background_from_middle_to_both_ends = 88
+    Overlay_circularly_7_colors_with_blue_background_from_middle_to_both_ends = 89
+    Overlay_circularly_7_colors_with_yellow_background_from_middle_to_both_ends = 90
+    Overlay_circularly_7_colors_with_purple_background_from_middle_to_both_ends = 91
+    Overlay_circularly_7_colors_with_cyan_background_from_middle_to_both_ends = 92
+    Overlay_circularly_7_colors_with_white_background_from_middle_to_both_ends = 93
+    Overlay_circularly_7_colors_with_black_background_from_both_ends_to_middle = 94
+    Overlay_circularly_7_colors_with_red_background_from_both_ends_to_middle = 95
+    Overlay_circularly_7_colors_with_green_background_from_both_ends_to_middle = 96
+    Overlay_circularly_7_colors_with_blue_background_from_both_ends_to_middle = 97
+    Overlay_circularly_7_colors_with_yellow_background_from_both_ends_to_middle = 98
+    Overlay_circularly_7_colors_with_purple_background_from_both_ends_to_middle = 99
+    Overlay_circularly_7_colors_with_cyan_background_from_both_ends_to_middle = 100
+    Overlay_circularly_7_colors_with_white_background_from_both_ends_to_middle = 101
+    Overlay_circularly_7_colors_with_black_background_from_middle_to_both_sides_and_return_back = 102
+    Overlay_circularly_7_colors_with_red_background_from_middle_to_both_sides_and_return_back = 103
+    Overlay_circularly_7_colors_with_green_background_from_middle_to_both_sides_and_return_back = 104
+    Overlay_circularly_7_colors_with_blue_background_from_middle_to_both_sides_and_return_back = 105
+    Overlay_circularly_7_colors_with_yellow_background_from_middle_to_both_sides_and_return_back = 106
+    Overlay_circularly_7_colors_with_purple_background_from_middle_to_both_sides_and_return_back = 107
+    Overlay_circularly_7_colors_with_cyan_background_from_middle_to_both_sides_and_return_back = 108
+    Overlay_circularly_7_colors_with_white_background_from_middle_to_both_sides_and_return_back = 109
+    Fading_out_run_circularly_1point_with_black_background_from_start_to_end = 110
+    Fading_out_run_circularly_1point_with_red_background_from_start_to_end = 111
+    Fading_out_run_circularly_1point_with_green_background_from_start_to_end = 112
+    Fading_out_run_circularly_1point_with_blue_background_from_start_to_end = 113
+    Fading_out_run_circularly_1point_with_yellow_background_from_start_to_end = 114
+    Fading_out_run_circularly_1point_with_purple_background_from_start_to_end = 115
+    Fading_out_run_circularly_1point_with_cyan_background_from_start_to_end = 116
+    Fading_out_run_circularly_1point_with_white_background_from_start_to_end = 117
+    Fading_out_run_circularly_1point_with_black_background_from_end_to_start = 118
+    Fading_out_run_circularly_1point_with_red_background_from_end_to_start = 119
+    Fading_out_run_circularly_1point_with_green_background_from_end_to_start = 120
+    Fading_out_run_circularly_1point_with_blue_background_from_end_to_start = 121
+    Fading_out_run_circularly_1point_with_yellow_background_from_end_to_start = 122
+    Fading_out_run_circularly_1point_with_purple_background_from_end_to_start = 123
+    Fading_out_run_circularly_1point_with_cyan_background_from_end_to_start = 124
+    Fading_out_run_circularly_1point_with_white_background_from_end_to_start = 125
+    Fading_out_run_circularly_1point_with_black_background_from_start_to_end_and_return_back = 126
+    Fading_out_run_circularly_1point_with_red_background_from_start_to_end_and_return_back = 127
+    Fading_out_run_circularly_1point_with_green_background_from_start_to_end_and_return_back = 128
+    Fading_out_run_circularly_1point_with_blue_background_from_start_to_end_and_return_back = 129
+    Fading_out_run_circularly_1point_with_yellow_background_from_start_to_end_and_return_back = 130
+    Fading_out_run_circularly_1point_with_purple_background_from_start_to_end_and_return_back = 131
+    Fading_out_run_circularly_1point_with_cyan_background_from_start_to_end_and_return_back = 132
+    Fading_out_run_circularly_1point_with_white_background_from_start_to_end_and_return_back = 133
+    Flows_in_olivary_circularly_7_colors_with_black_background_from_start_to_end = 134
+    Flows_in_olivary_circularly_7_colors_with_red_background_from_start_to_end = 135
+    Flows_in_olivary_circularly_7_colors_with_green_background_from_start_to_end = 136
+    Flows_in_olivary_circularly_7_colors_with_blue_background_from_start_to_end = 137
+    Flows_in_olivary_circularly_7_colors_with_yellow_background_from_start_to_end = 138
+    Flows_in_olivary_circularly_7_colors_with_purple_background_from_start_to_end = 139
+    Flows_in_olivary_circularly_7_colors_with_cyan_background_from_start_to_end = 140
+    Flows_in_olivary_circularly_7_colors_with_white_background_from_start_to_end = 141
+    Flows_in_olivary_circularly_7_colors_with_black_background_from_end_to_start = 142
+    Flows_in_olivary_circularly_7_colors_with_red_background_from_end_to_start = 143
+    Flows_in_olivary_circularly_7_colors_with_green_background_from_end_to_start = 144
+    Flows_in_olivary_circularly_7_colors_with_blue_background_from_end_to_start = 145
+    Flows_in_olivary_circularly_7_colors_with_yellow_background_from_end_to_start = 146
+    Flows_in_olivary_circularly_7_colors_with_purple_background_from_end_to_start = 147
+    Flows_in_olivary_circularly_7_colors_with_cyan_background_from_end_to_start = 148
+    Flows_in_olivary_circularly_7_colors_with_white_background_from_end_to_start = 149
+    Flows_in_olivary_circularly_7_colors_with_black_background_from_start_to_end_and_return_back = 150
+    Flows_in_olivary_circularly_7_colors_with_red_background_from_start_to_end_and_return_back = 151
+    Flows_in_olivary_circularly_7_colors_with_green_background_from_start_to_end_and_return_back = 152
+    Flows_in_olivary_circularly_7_colors_with_blue_background_from_start_to_end_and_return_back = 153
+    Flows_in_olivary_circularly_7_colors_with_yellow_background_from_start_to_end_and_return_back = 154
+    Flows_in_olivary_circularly_7_colors_with_purple_background_from_start_to_end_and_return_back = 155
+    Flows_in_olivary_circularly_7_colors_with_cyan_background_from_start_to_end_and_return_back = 156
+    Flows_in_olivary_circularly_7_colors_with_white_background_from_start_to_end_and_return_back = 157
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_black_background_from_start_to_end = 158
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_red_background_from_start_to_end = 159
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_green_background_from_start_to_end = 160
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_blue_background_from_start_to_end = 161
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_yellow_background_from_start_to_end = 162
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_purple_background_from_start_to_end = 163
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_cyan_background_from_start_to_end = 164
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_white_background_from_start_to_end = 165
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_black_background_from_end_to_start = 166
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_red_background_from_end_to_start = 167
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_green_background_from_end_to_start = 168
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_blue_background_from_end_to_start = 169
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_yellow_background_from_end_to_start = 170
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_purple_background_from_end_to_start = 171
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_cyan_background_from_end_to_start = 172
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_white_background_from_end_to_start = 173
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_black_background_from_start_to_end_and_return_back = 174
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_red_background_from_start_to_end_and_return_back = 175
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_green_background_from_start_to_end_and_return_back = 176
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_blue_background_from_start_to_end_and_return_back = 177
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_yellow_background_from_start_to_end_and_return_back = 178
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_purple_background_from_start_to_end_and_return_back = 179
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_cyan_background_from_start_to_end_and_return_back = 180
+    Seven_colors_run_circularly_each_color_in_every_1_point_with_white_background_from_start_to_end_and_return_back = 181
+    Seven_colors_run_circularly_each_color_in_multi_points_with_red_background_from_start_to_end = 182
+    Seven_colors_run_circularly_each_color_in_multi_points_with_green_background_from_start_to_end = 183
+    Seven_colors_run_circularly_each_color_in_multi_points_with_blue_background_from_start_to_end = 184
+    Seven_colors_run_circularly_each_color_in_multi_points_with_yellow_background_from_start_to_end = 185
+    Seven_colors_run_circularly_each_color_in_multi_points_with_purple_background_from_start_to_end = 186
+    Seven_colors_run_circularly_each_color_in_multi_points_with_cyan_background_from_start_to_end = 187
+    Seven_colors_run_circularly_each_color_in_multi_points_with_white_background_from_start_to_end = 188
+    Seven_colors_run_circularly_each_color_in_multi_points_with_red_background_from_end_to_start = 189
+    Seven_colors_run_circularly_each_color_in_multi_points_with_green_background_from_end_to_start = 190
+    Seven_colors_run_circularly_each_color_in_multi_points_with_blue_background_from_end_to_start = 191
+    Seven_colors_run_circularly_each_color_in_multi_points_with_yellow_background_from_end_to_start = 192
+    Seven_colors_run_circularly_each_color_in_multi_points_with_purple_background_from_end_to_start = 193
+    Seven_colors_run_circularly_each_color_in_multi_points_with_cyan_background_from_end_to_start = 194
+    Seven_colors_run_circularly_each_color_in_multi_points_with_white_background_from_end_to_start = 195
+    Seven_colors_run_circularly_each_color_in_multi_points_with_red_background_from_start_to_end_and_return_back = 196
+    Seven_colors_run_circularly_each_color_in_multi_points_with_green_background_from_start_to_end_and_return_back = 197
+    Seven_colors_run_circularly_each_color_in_multi_points_with_blue_background_from_start_to_end_and_return_back = 198
+    Seven_colors_run_circularly_each_color_in_multi_points_with_yellow_background_from_start_to_end_and_return_back = 199
+    Seven_colors_run_circularly_each_color_in_multi_points_with_purple_background_from_start_to_end_and_return_back = 200
+    Seven_colors_run_circularly_each_color_in_multi_points_with_cyan_background_from_start_to_end_and_return_back = 201
+    Seven_colors_run_circularly_each_color_in_multi_points_with_white_background_from_start_to_end_and_return_back = 202
+    Fading_out_run_circularly_7_colors_each_in_red_fading_from_start_to_end = 203
+    Fading_out_run_circularly_7_colors_each_in_green_fading_from_start_to_end = 204
+    Fading_out_run_circularly_7_colors_each_in_blue_fading_from_start_to_end = 205
+    Fading_out_run_circularly_7_colors_each_in_yellow_fading_from_start_to_end = 206
+    Fading_out_run_circularly_7_colors_each_in_purple_fading_from_start_to_end = 207
+    Fading_out_run_circularly_7_colors_each_in_cyan_fading_from_start_to_end = 208
+    Fading_out_run_circularly_7_colors_each_in_white_fading_from_start_to_end = 209
+    Fading_out_run_circularly_7_colors_each_in_red_fading_from_end_to_start = 210
+    Fading_out_run_circularly_7_colors_each_in_green_fading_from_end_to_start = 211
+    Fading_out_run_circularly_7_colors_each_in_blue_fading_from_end_to_start = 212
+    Fading_out_run_circularly_7_colors_each_in_yellow_fading_from_end_to_start = 213
+    Fading_out_run_circularly_7_colors_each_in_purple_fading_from_end_to_start = 214
+    Fading_out_run_circularly_7_colors_each_in_cyan_fading_from_end_to_start = 215
+    Fading_out_run_circularly_7_colors_each_in_white_fading_from_end_to_start = 216
+    Fading_out_run_circularly_7_colors_each_in_red_fading_from_start_to_end_and_return_back = 217
+    Fading_out_run_circularly_7_colors_each_in_green_fading_from_start_to_end_and_return_back = 218
+    Fading_out_run_circularly_7_colors_each_in_blue_fading_from_start_to_end_and_return_back = 219
+    Fading_out_run_circularly_7_colors_each_in_yellow_fading_from_start_to_end_and_return_back = 220
+    Fading_out_run_circularly_7_colors_each_in_purple_fading_from_start_to_end_and_return_back = 221
+    Fading_out_run_circularly_7_colors_each_in_cyan_fading_from_start_to_end_and_return_back = 222
+    Fading_out_run_circularly_7_colors_each_in_white_fading_from_start_to_end_and_return_back = 223
+    Seven_colors_each_in_red_run_circularly_multi_points_from_start_to_end = 224
+    Seven_colors_each_in_green_run_circularly_multi_points_from_start_to_end = 225
+    Seven_colors_each_in_blue_run_circularly_multi_points_from_start_to_end = 226
+    Seven_colors_each_in_yellow_run_circularly_multi_points_from_start_to_end = 227
+    Seven_colors_each_in_purple_run_circularly_multi_points_from_start_to_end = 228
+    Seven_colors_each_in_cyan_run_circularly_multi_points_from_start_to_end = 229
+    Seven_colors_each_in_white_run_circularly_multi_points_from_start_to_end = 230
+    Seven_colors_each_in_red_run_circularly_multi_points_from_end_to_start = 231
+    Seven_colors_each_in_green_run_circularly_multi_points_from_end_to_start = 232
+    Seven_colors_each_in_blue_run_circularly_multi_points_from_end_to_start = 233
+    Seven_colors_each_in_yellow_run_circularly_multi_points_from_end_to_start = 234
+    Seven_colors_each_in_purple_run_circularly_multi_points_from_end_to_start = 235
+    Seven_colors_each_in_cyan_run_circularly_multi_points_from_end_to_start = 236
+    Seven_colors_each_in_white_run_circularly_multi_points_from_end_to_start = 237
+    Seven_colors_each_in_red_run_circularly_multi_points_from_start_to_end_and_return_back = 238
+    Seven_colors_each_in_green_run_circularly_multi_points_from_start_to_end_and_return_back = 239
+    Seven_colors_each_in_blue_run_circularly_multi_points_from_start_to_end_and_return_back = 240
+    Seven_colors_each_in_yellow_run_circularly_multi_points_from_start_to_end_and_return_back = 241
+    Seven_colors_each_in_purple_run_circularly_multi_points_from_start_to_end_and_return_back = 242
+    Seven_colors_each_in_cyan_run_circularly_multi_points_from_start_to_end_and_return_back = 243
+    Seven_colors_each_in_white_run_circularly_multi_points_from_start_to_end_and_return_back = 244
+    Flows_gradually_and_circularly_6_colors_with_red_background_from_start_to_end = 245
+    Flows_gradually_and_circularly_6_colors_with_green_background_from_start_to_end = 246
+    Flows_gradually_and_circularly_6_colors_with_blue_background_from_start_to_end = 247
+    Flows_gradually_and_circularly_6_colors_with_yellow_background_from_start_to_end = 248
+    Flows_gradually_and_circularly_6_colors_with_purple_background_from_start_to_end = 249
+    Flows_gradually_and_circularly_6_colors_with_cyan_background_from_start_to_end = 250
+    Flows_gradually_and_circularly_6_colors_with_white_background_from_start_to_end = 251
+    Flows_gradually_and_circularly_6_colors_with_red_background_from_end_to_start = 252
+    Flows_gradually_and_circularly_6_colors_with_green_background_from_end_to_start = 253
+    Flows_gradually_and_circularly_6_colors_with_blue_background_from_end_to_start = 254
+    Flows_gradually_and_circularly_6_colors_with_yellow_background_from_end_to_start = 255
+    Flows_gradually_and_circularly_6_colors_with_purple_background_from_end_to_start = 256
+    Flows_gradually_and_circularly_6_colors_with_cyan_background_from_end_to_start = 257
+    Flows_gradually_and_circularly_6_colors_with_white_background_from_end_to_start = 258
+    Flows_gradually_and_circularly_6_colors_with_red_background_from_start_to_end_and_return_back = 259
+    Flows_gradually_and_circularly_6_colors_with_green_background_from_start_to_end_and_return_back = 260
+    Flows_gradually_and_circularly_6_colors_with_blue_background_from_start_to_end_and_return_back = 261
+    Flows_gradually_and_circularly_6_colors_with_yellow_background_from_start_to_end_and_return_back = 262
+    Flows_gradually_and_circularly_6_colors_with_purple_background_from_start_to_end_and_return_back = 263
+    Flows_gradually_and_circularly_6_colors_with_cyan_background_from_start_to_end_and_return_back = 264
+    Flows_gradually_and_circularly_6_colors_with_white_background_from_start_to_end_and_return_back = 265
+    Seven_colors_run_with_black_background_from_start_to_end = 266
+    Seven_colors_run_with_red_background_from_start_to_end = 267
+    Seven_colors_run_with_green_background_from_start_to_end = 268
+    Seven_colors_run_with_blue_background_from_start_to_end = 269
+    Seven_colors_run_with_yellow_background_from_start_to_end = 270
+    Seven_colors_run_with_purple_background_from_start_to_end = 271
+    Seven_colors_run_with_cyan_background_from_start_to_end = 272
+    Seven_colors_run_with_white_background_from_start_to_end = 273
+    Seven_colors_run_with_black_background_from_end_to_start = 274
+    Seven_colors_run_with_red_background_from_end_to_start = 275
+    Seven_colors_run_with_green_background_from_end_to_start = 276
+    Seven_colors_run_with_blue_background_from_end_to_start = 277
+    Seven_colors_run_with_yellow_background_from_end_to_start = 278
+    Seven_colors_run_with_purple_background_from_end_to_start = 279
+    Seven_colors_run_with_cyan_background_from_end_to_start = 280
+    Seven_colors_run_with_white_background_from_end_to_start = 281
+    Seven_colors_run_with_black_background_from_start_to_end_and_return_back = 282
+    Seven_colors_run_with_red_background_from_start_to_end_and_return_back = 283
+    Seven_colors_run_with_green_background_from_start_to_end_and_return_back = 284
+    Seven_colors_run_with_blue_background_from_start_to_end_and_return_back = 285
+    Seven_colors_run_with_yellow_background_from_start_to_end_and_return_back = 286
+    Seven_colors_run_with_purple_background_from_start_to_end_and_return_back = 287
+    Seven_colors_run_with_cyan_background_from_start_to_end_and_return_back = 288
+    Seven_colors_run_with_white_background_from_start_to_end_and_return_back = 289
+    Seven_colors_run_gradually_and_7_colors_run_in_olivary = 290
+    Seven_colors_run_gradually_and_7_colors_change_quickly = 291
+    Seven_colors_run_gradually_and_7_colors_flash = 292
+    Seven_colors_run_in_olivary_and_7_colors_change_quickly = 293
+    Seven_colors_run_in_olivary_and_7_colors_flash = 294
+    Seven_colors_change_quickly_and_7_colors_flash = 295
+    Seven_colors_run_gradually_and_7_colors_run_in_olivary_and_7_colors_change_quickly = 296
+    Seven_colors_run_gradually_and_7_colors_run_in_olivary_and_7_colors_flash = 297
+    Seven_colors_run_gradually_and_7_colors_change_quickly_and_7_colors_flash = 298
+    Seven_colors_run_in_olivary_and_7_colors_change_quickly_and_7_colors_flash = 299
+    Seven_colors_run_gradually_and_7_colors_run_in_olivary_and_7_colors_change_quickly_and_7_color_flash = 300
+
+    @staticmethod
+    def valid(pattern: int):
+        led_strip_min = 0x064 # = 100 (app   1)
+        led_strip_max = 0x18f # = 399 (app 300)
+        return (pattern >= led_strip_min and pattern <= led_strip_max)
+
+    @staticmethod
+    def valtostr(pattern):
+        if PresetPatternStrip.valid(pattern):
+            # workaround, use 99 to mimic app numbers
+            num = pattern - 99
+            pat = PresetPatternStrip(num)
+            return pat.name
+        else:
+            print(pattern)
+            return '<wrong value>'
 
 class PresetPattern(IntEnum):
     seven_color_cross_fade = 0x25
@@ -201,15 +520,19 @@ class PresetPattern(IntEnum):
 
     @staticmethod
     def valid_strip(pattern: int):
-        return pattern >= 0x064 and pattern <= 0x18F
+        # keep old api
+        return PresetPatternStrip.valid(pattern)
 
     @staticmethod
     def valtostr(pattern):
         if PresetPattern.valid(pattern):
             return pattern.name
-        if PresetPattern.valid_strip(pattern):
-            # workaround, use 99 to mimic app numbers
-            return "strip-" + str(pattern - 99)
+        else:
+            # keep old api
+            if PresetPatternStrip.valid(pattern):
+                return PresetPatternStrip.valtostr(pattern)
+            print(pattern)
+            return '<wrong value>'
 
 
 class BuiltInTimer:
